@@ -1,0 +1,237 @@
+$bkgd-color: #51a5f4;
+$red-color: #f57a7c;
+
+@import url("https://fonts.googleapis.com/css2?family=Anybody&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out,
+    box-shadow 200ms ease-in-out;
+  &:hover {
+    background-color: black;
+    color: $red-color;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px white;
+  }
+}
+
+body {
+  font-family: "Anybody", cursive;
+  margin: 1rem;
+  padding: 0;
+  background-color: $bkgd-color;
+  color: black;
+
+  @media (min-width: 1000px) {
+    margin: 2rem 1rem;
+    padding: 1rem;
+    border: 1px solid black;
+  }
+}
+
+.page-header {
+  max-height: max(100vh, 100%);
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  &__nav-container {
+    width: 100%;
+    max-height: max(3rem, 100%);
+  }
+}
+
+.nav {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 3fr;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid black;
+  padding-block: 0.5em;
+  place-items: center;
+  gap: 0.5em;
+
+  @media (min-width: 500px) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+    width: max-content;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: clamp(1rem, 3vw, 2rem);
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  &__place {
+    width: max-content;
+    justify-self: center;
+    font-weight: 600;
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
+    grid-row: 2;
+  }
+
+  &__group {
+    justify-self: end;
+    display: flex;
+    gap: 2rem;
+    grid-row: 3;
+
+    a {
+      padding: 0.5em 1em;
+    }
+  }
+}
+
+h1 {
+  margin-block-end: auto;
+  padding-inline-start: 2rem;
+  position: absolute;
+  font-size: clamp(4rem, 20vw, 20rem);
+  line-height: 0.8;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  width: max-content;
+}
+
+img {
+  width: 100%;
+  padding-block: 1rem;
+}
+
+.scroll-container {
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  overflow: hidden;
+  position: absolute;
+  inset-block-end: 0;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    inset-block-end: 10%;
+  }
+
+  &__text {
+    width: max-content;
+    background-color: black;
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    text-transform: uppercase;
+    color: $red-color;
+    transform: translateX(160%);
+    animation: scroll 60s linear infinite;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: scroll 30s linear infinite;
+    }
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(130%);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.button-container {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 80%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (min-width: 1600px) {
+    flex-direction: row;
+    inset-inline-start: 70%;
+    inset-block-start: 60%;
+    gap: 5rem;
+  }
+
+  .button {
+    background-color: transparent;
+    box-shadow: 0 0 0 0.2em black;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: clamp(1rem, 2vw, 3rem);
+    font-family: inherit;
+    transition: box-shadow 100ms ease-in-out, background-color 100ms ease-in-out,
+      transform 200ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $red-color;
+      @media (prefers-reduced-motion: no-preference) {
+        transform: skewX(-10deg);
+      }
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.4em white;
+    }
+  }
+}
+
+.page-main {
+  padding-block: 1rem;
+  line-height: 1.5;
+
+  & article {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(37ch, 1fr));
+    grid-gap: 2em;
+  }
+}
+
+article {
+  hr {
+    border: 1px solid black;
+    height: 0px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  div {
+    padding: min(10px, 1rem);
+    border: 1px solid black;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    width: fit-content;
+    padding: 0.3em 0.5em;
+    margin-inline: auto;
+    font-weight: 400;
+    text-align: center;
+    background-color: black;
+    color: $red-color;
+  }
+}
